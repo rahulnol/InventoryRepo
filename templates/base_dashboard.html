@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block content %}
 
-{% include 'navbar.html' %}
+    {% include 'navbar.html' %}
     {% block sub_content %}{% endblock %}
-{% include 'footer.html' %}
-{% include 'npuser/profile.html' %}
+    {% include 'footer.html' %}
+    {% include 'modal/delete_confirmation.html' %}
+{#    {% include 'npuser/profile.html' %}#}
 
+
+{% endblock %}
+
+
+{% block extra_js %}
+    <script src="{% static 'assets/js/common.js' %}"></script>
 {% endblock %}

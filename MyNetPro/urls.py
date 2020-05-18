@@ -17,5 +17,6 @@ urlpatterns = [
     path('accounts/',include('django.contrib.auth.urls')),
     path('validatelogin/',views.validateLogin),
     path('venue/', include('venue.urls')),
+    path('sports/', include('sports.urls')),
     #path('validatelogin/',views.ValidateLogin.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

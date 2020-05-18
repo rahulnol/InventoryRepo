@@ -25,11 +25,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'MyNetApp',
     'venue',
     'sports',
     'booking',
-    'payment'
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +121,5 @@ AUTHENTICATION_BACKENDS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+TIME_INPUT_FORMATS = [ '%I:%M']
