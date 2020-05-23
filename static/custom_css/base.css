@@ -1,0 +1,9 @@
+.mcSideMenuDiv{
+    width: 7%;
+    position: absolute;
+    height: 91%
+}
+.miSideMenuEachDiv{
+     height: 15%;
+    border: 1px solid black;
+}
