@@ -22132,3 +22132,25 @@ label.btn {
     border: 1px solid gainsboro;
 
 }
+
+.btn-default-grey{
+    border: 1px solid #A1A1A1 !important;
+    color: #505050 !important;
+    background-color: #FFFFFF !important;
+    cursor: pointer !important;
+    /*color: white !important;*/
+
+}
+
+.color-black{
+    color: black !important;
+}
+
+.member-unconfirmed-color {
+    color: #CA890B;
+    background-color: #FFF1D6;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+

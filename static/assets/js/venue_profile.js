@@ -1,5 +1,60 @@
+$('#miCheckIconEditVenueDesc').click(function () {
+    var venueDesc = $('#miTextAreaEditDiv').val();
+    var venueId = $('#miVenueId').val();
+    if (venueDesc.length < 20) {
+        $('#miErrorDivForTextArea').show();
+    } else {
+        $('#miErrorDivForTextArea').hide();
+        myData = {
+            'jsVenueId':venueId,
+            'jsVenueDesc':venueDesc,
+            'myCheck':'DescEditPutCall'
+
+        }
+        $.ajax({
+            url: 'http://127.0.0.1:8000/venue/profile/',
+            type: 'PUT',
+            data: JSON.stringify(myData),
+            success: function (data,status) {
+                if(data.success == 'Pass'){
+                    window.location.reload();
+                }
+                if(data.success == 'Fail'){
+                    
+                }
+            },
+            error: function (data,status) {
+                
+            }
+
+        })
+
+    }
+})
+
+$('#miEditIconVenueDesc').click(function () {
+    $('#miOriginalVenueDescDiv').hide();
+    $('#miVenueDescEditDiv').show();
+    var jsVenueDesc = $(this).parent().data('venuedesc');
+    var jsVenueId = $(this).parent().data('venueid');
+    $('#miTextAreaEditDiv').val(jsVenueDesc);
+    $('#miVenueId').val(jsVenueId);
+
+});
+
+$('#miCrossIconEditVenueDesc').click(function () {
+    $('#miOriginalVenueDescDiv').show();
+    $('#miVenueDescEditDiv').hide();
+});
+
+
 $('#miEditIconContactInfo').click(function () {
     $('#miContactInfoModal').modal('show');
+    $('#miDivEmailError').hide();
+    $('#miDivPhoneError').hide();
+    $('#miDivLandmarkError').hide();
+    $('#miDivWebsiteError').hide();
+    $('#miErrorDivResponse').hide();
     var venue = $(this).parent().data('venue');
     $('#miInputEmail').val(venue.email);
     $('#miInputPhone').val(venue.phone);
@@ -15,43 +70,43 @@ $('#miContactInfoModal #miSaveBtnContactInfoModal').click(function () {
     var jsLandLine = $('#miInputLandLine').val();
     var jsLandmark = $('#miInputLandmark').val();
     var jsWebsite = $('#miInputWebsite').val();
-    var jsVenueId =  $('#miVenueId').val();
+    var jsVenueId = $('#miVenueId').val();
 
     myError = false;
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (!jsEmail.match(mailformat)) {
         $('#miDivEmailError').show();
         myError = true;
-    }else{
+    } else {
         $('#miDivEmailError').hide();
     }
 
     if (jsPhone.length < 10 || jsPhone.length > 10) {
         $('#miDivPhoneError').show();
         myError = true;
-    }else{
+    } else {
         $('#miDivPhoneError').hide();
     }
 
     if (jsLandLine.length < 11 || jsLandLine.length > 11) {
         jsLandLine = '02746277677';
     } else {
-         jsLandLine = $('#miInputLandLine').val();
+        jsLandLine = $('#miInputLandLine').val();
 
     }
-    if(!jsLandmark){
+    if (!jsLandmark) {
         $('#miDivLandmarkError').show();
         myError = true;
-    }else{
+    } else {
         $('#miDivLandmarkError').hide();
     }
 
-     if(!jsWebsite){
+    if (!jsWebsite) {
         $('#miDivWebsiteError').show();
         myError = true;
-    }else{
-         $('#miDivWebsiteError').hide();
-     }
+    } else {
+        $('#miDivWebsiteError').hide();
+    }
     if (myError) {
         return;
     } else {
@@ -61,22 +116,23 @@ $('#miContactInfoModal #miSaveBtnContactInfoModal').click(function () {
         $('#miDivWebsiteError').hide();
 
         myData = {
-            'jsEmail':jsEmail,
-            'jsPhone':jsPhone,
-            'jsLandline':jsLandLine,
-            'jsLandmark':jsLandmark,
-            'jsWebsite':jsWebsite,
-            'jsVenueId':jsVenueId
+            'jsEmail': jsEmail,
+            'jsPhone': jsPhone,
+            'jsLandline': jsLandLine,
+            'jsLandmark': jsLandmark,
+            'jsWebsite': jsWebsite,
+            'jsVenueId': jsVenueId,
+            'myCheck':'ContactInfoPutCall'
             //'jsVenueId':23
         }
         $.ajax({
             url: 'http://127.0.0.1:8000/venue/profile/',
             type: 'PUT',
             data: JSON.stringify(myData),
-            success: function (data,status) {
-                if(data.success == 'Fail'){
+            success: function (data, status) {
+                if (data.success == 'Fail') {
                     $('#miErrorDivResponse').show();
-                }else{
+                } else {
                     window.location.reload();
                 }
 
